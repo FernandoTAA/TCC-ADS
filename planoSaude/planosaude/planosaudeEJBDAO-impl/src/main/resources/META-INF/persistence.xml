@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	
+	<persistence-unit name="planosaudePU" transaction-type="JTA">
+
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:jboss/jdbc/planosaude</jta-data-source>
+
+		<class>br.com.planosaude.dao.entity.Dependente</class>
+		<class>br.com.planosaude.dao.entity.Endereco</class>
+		<class>br.com.planosaude.dao.entity.Pessoa</class>
+		<class>br.com.planosaude.dao.entity.Telefone</class>
+
+		<class>br.com.planosaude.dao.entity.Date</class>
+		<class>br.com.planosaude.dao.entity.TipoPlano</class>
+
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+		<properties>
+<!-- 			<property name="hibernate.connection.url" value="jdbc:postgresql://127.0.0.1/planosaudeWeb" />   -->
+<!--             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />   -->
+<!--             <property name="hibernate.connection.password" value="postgres" />   -->
+<!--             <property name="hibernate.connection.username" value="postgres" />   -->
+            
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+		</properties>
+
+	</persistence-unit>
+
+</persistence>

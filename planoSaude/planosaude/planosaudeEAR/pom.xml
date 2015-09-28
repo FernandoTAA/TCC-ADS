@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>br.com.planosaude</groupId>
+		<artifactId>planosaude</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>planosaudeEAR</artifactId>
+	<packaging>ear</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>br.com.planosaude</groupId>
+			<artifactId>planosaudeJPA</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.planosaude</groupId>
+			<artifactId>planosaudeEJBDAO-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.planosaude</groupId>
+			<artifactId>planosaudeEJBDAO-impl</artifactId>
+			<type>ejb</type>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.planosaude</groupId>
+			<artifactId>planosaudeEJBBusiness-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.planosaude</groupId>
+			<artifactId>planosaudeEJBBusiness-impl</artifactId>
+			<type>ejb</type>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.planosaude</groupId>
+			<artifactId>planosaudeWS</artifactId>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.planosaude</groupId>
+			<artifactId>planosaudeWeb</artifactId>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<modules>
+						<jarModule>
+							<groupId>br.com.planosaude</groupId>
+							<artifactId>planosaudeJPA</artifactId>
+							<bundleFileName>planosaudeJPA.jar</bundleFileName>
+						</jarModule>
+						<jarModule>
+							<groupId>br.com.planosaude</groupId>
+							<artifactId>planosaudeEJBDAO-api</artifactId>
+							<bundleFileName>planosaudeEJBDAO-api.jar</bundleFileName>
+						</jarModule>
+						<jarModule>
+							<groupId>br.com.planosaude</groupId>
+							<artifactId>planosaudeEJBBusiness-api</artifactId>
+							<bundleFileName>planosaudeEJBBusiness-api.jar</bundleFileName>
+						</jarModule>
+						<ejbModule>
+							<groupId>br.com.planosaude</groupId>
+							<artifactId>planosaudeEJBDAO-impl</artifactId>
+							<bundleFileName>planosaudeEJBDAO-impl.jar</bundleFileName>
+						</ejbModule>
+						<ejbModule>
+							<groupId>br.com.planosaude</groupId>
+							<artifactId>planosaudeEJBBusiness-impl</artifactId>
+							<bundleFileName>planosaudeEJBBusiness-impl.jar</bundleFileName>
+						</ejbModule>
+						<webModule>
+							<groupId>br.com.planosaude</groupId>
+							<artifactId>planosaudeWS</artifactId>
+							<bundleFileName>planosaudeWS.war</bundleFileName>
+						</webModule>
+						<webModule>
+							<groupId>br.com.planosaude</groupId>
+							<artifactId>planosaudeWeb</artifactId>
+							<bundleFileName>planosaudeWeb.war</bundleFileName>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
