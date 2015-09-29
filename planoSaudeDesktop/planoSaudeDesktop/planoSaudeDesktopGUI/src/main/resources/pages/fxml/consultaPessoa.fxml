@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.planosaude.gui.controller.ConsultaPessoaController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn maxWidth="10000.0" prefWidth="75.0" text="Nome" />
+                <TableColumn maxWidth="4000.0" prefWidth="100.0" text="Tipo Plano" />
+                  <TableColumn maxWidth="4000.0" prefWidth="100.0" text="Vencimento" />
+                  <TableColumn prefWidth="122.0" text="Cidade" />
+                  <TableColumn maxWidth="1500.0" prefWidth="43.0" text="UF" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </center>
+   <bottom>
+      <FlowPane alignment="CENTER" hgap="10.0" prefHeight="35.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefWidth="80.0" text="Adicionar" onAction="#handleAdcionar" />
+            <Button mnemonicParsing="false" prefWidth="80.0" text="Editar" onAction="#handleEditar"/>
+         </children>
+      </FlowPane>
+   </bottom>
+</BorderPane>
