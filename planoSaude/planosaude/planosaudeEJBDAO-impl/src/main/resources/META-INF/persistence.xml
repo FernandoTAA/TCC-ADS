@@ -13,17 +13,11 @@
 		<class>br.com.planosaude.dao.entity.Pessoa</class>
 		<class>br.com.planosaude.dao.entity.Telefone</class>
 
-		<class>br.com.planosaude.dao.entity.Date</class>
-		<class>br.com.planosaude.dao.entity.TipoPlano</class>
+		<class>br.com.planosaude.dao.type.Date</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 		<properties>
-<!-- 			<property name="hibernate.connection.url" value="jdbc:postgresql://127.0.0.1/planosaudeWeb" />   -->
-<!--             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />   -->
-<!--             <property name="hibernate.connection.password" value="postgres" />   -->
-<!--             <property name="hibernate.connection.username" value="postgres" />   -->
-            
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
