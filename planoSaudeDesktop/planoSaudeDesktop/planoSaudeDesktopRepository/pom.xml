@@ -10,11 +10,6 @@
 
 	<artifactId>planosaudeDesktopRepository</artifactId>
 
-	<properties>
-		<spring.version>4.0.1.RELEASE</spring.version>
-		<spring.data.jpa>1.0.2.RELEASE</spring.data.jpa>
-	</properties>
-	
 	<dependencies>
 		<dependency>
 			<groupId>br.com.planosaude</groupId>
@@ -39,25 +34,21 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.36</version>
 		</dependency>
 	</dependencies>
 </project>
