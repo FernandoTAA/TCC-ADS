@@ -1,5 +1,5 @@
 package br.com.planosaude.service;
 
-public interface GenericService {
+public interface GenericService<T> {
 
 }

@@ -1,5 +1,7 @@
 package br.com.planosaude.service.impl;
 
-public class GenericServiceImpl {
+import br.com.planosaude.service.GenericService;
+
+public class GenericServiceImpl<T> implements GenericService<T> {
 
 }

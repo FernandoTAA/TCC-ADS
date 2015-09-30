@@ -6,6 +6,7 @@ import java.io.InputStream;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import br.com.planosaude.gui.vo.SpringFxmlLoaderVO;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.util.Callback;

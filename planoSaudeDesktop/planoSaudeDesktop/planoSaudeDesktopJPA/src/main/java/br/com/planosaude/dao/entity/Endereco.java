@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlTransient;
 
-@SuppressWarnings("restriction")
 @Entity
 @Table(name = "ENDERECO")
 public class Endereco implements Serializable {
@@ -17,10 +17,11 @@ public class Endereco implements Serializable {
 	private static final long serialVersionUID = 3307157915521984256L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "NOME", length = 50, nullable = false)
+	@Column(name = "LOGRADOURO", length = 50, nullable = false)
 	private String logradouro;
 
 	@Column(name = "NUMERO")
@@ -69,7 +70,6 @@ public class Endereco implements Serializable {
 		return UF;
 	}
 
-	@XmlTransient
 	public Pessoa getPessoa() {
 		return pessoa;
 	}

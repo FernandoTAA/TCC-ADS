@@ -1,4 +1,4 @@
-package br.com.planosaude.gui.util;
+package br.com.planosaude.gui.vo;
 
 import javafx.scene.Parent;
 

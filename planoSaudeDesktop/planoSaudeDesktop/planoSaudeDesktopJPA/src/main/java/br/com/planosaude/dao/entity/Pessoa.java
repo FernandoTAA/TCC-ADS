@@ -1,6 +1,7 @@
 package br.com.planosaude.dao.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
@@ -11,6 +12,8 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -27,6 +30,7 @@ public class Pessoa implements Serializable {
 	private static final long serialVersionUID = -8647768563379185935L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
 
@@ -57,6 +61,15 @@ public class Pessoa implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoa")
 	private List<Dependente> dependentes;
+
+	public Pessoa() {
+		super();
+		dataNascimento = new Date();
+		dataVencimentoPlano = new Date();
+		endereco = new Endereco();
+		telefone = new Telefone();
+		dependentes = new ArrayList<Dependente>();
+	}
 
 	public Long getId() {
 		return id;

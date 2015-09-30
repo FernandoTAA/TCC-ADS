@@ -7,15 +7,15 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlTransient;
 
 import br.com.planosaude.dao.type.Date;
 
-@SuppressWarnings("restriction")
 @Entity
 @Table(name = "DEPENDENTE")
 public class Dependente implements Serializable {
@@ -23,6 +23,7 @@ public class Dependente implements Serializable {
 	private static final long serialVersionUID = 8031378701484772110L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
 
@@ -37,6 +38,11 @@ public class Dependente implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "ID_PESSOA")
 	private Pessoa pessoa;
+	
+	public Dependente() {
+		super();
+		dataNascimento = new Date();
+	}
 
 	public Long getId() {
 		return id;
@@ -50,7 +56,6 @@ public class Dependente implements Serializable {
 		return dataNascimento;
 	}
 
-	@XmlTransient
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
