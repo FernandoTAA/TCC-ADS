@@ -9,7 +9,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 
-@SuppressWarnings("restriction")
 @Entity
 @Table(name = "TELEFONE")
 public class Telefone implements Serializable {
@@ -20,7 +19,7 @@ public class Telefone implements Serializable {
 	@Column(name="ID")
 	private Long id;
 
-	@Column(name="NOME", length=14, nullable=false)
+	@Column(name="TELEFONE", length=14, nullable=false)
 	private String telefone;
 	
 	@Column(name="CONTATO", length=50, nullable=false)

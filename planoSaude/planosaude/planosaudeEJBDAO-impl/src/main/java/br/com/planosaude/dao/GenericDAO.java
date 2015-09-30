@@ -8,7 +8,7 @@ public class GenericDAO<T> implements IGenericDAOLocal<T> {
 	@PersistenceContext(unitName = "planosaudePU")
 	private EntityManager entityManager;
 
-	public EntityManager getEntityManager() {
+	protected EntityManager getEntityManager() {
 		return entityManager;
 	}
 

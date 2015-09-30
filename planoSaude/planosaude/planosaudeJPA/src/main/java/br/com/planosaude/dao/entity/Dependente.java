@@ -15,7 +15,6 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import br.com.planosaude.dao.type.Date;
 
-@SuppressWarnings("restriction")
 @Entity
 @Table(name = "DEPENDENTE")
 public class Dependente implements Serializable {
