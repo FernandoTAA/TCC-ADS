@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.planosaude</groupId>
@@ -9,6 +10,9 @@
 	<properties>
 		<javax.javaee-api.version>7.0</javax.javaee-api.version>
 		<org.hibernate.version>5.0.1.Final</org.hibernate.version>
+		<javax.servlet.servlet-api.version>2.5</javax.servlet.servlet-api.version>
+		<jstl.version>1.2</jstl.version>
+
 	</properties>
 
 	<modules>
@@ -24,13 +28,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>javax</groupId>
-				<artifactId>javaee-api</artifactId>
-				<version>${javax.javaee-api.version}</version>
-				<scope>provided</scope>
-			</dependency>
-
 			<dependency>
 				<groupId>br.com.planosaude</groupId>
 				<artifactId>planosaudeEJBDAO-api</artifactId>
@@ -75,6 +72,27 @@
 				<artifactId>planosaudeWS</artifactId>
 				<version>${project.version}</version>
 				<type>war</type>
+			</dependency>
+
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>${javax.javaee-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${javax.servlet.servlet-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>jstl</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${jstl.version}</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
