@@ -1,15 +1,9 @@
 package br.com.planosaude.batch.client.handler;
 
-import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Date;
-import java.util.Set;
 
 import javax.xml.namespace.QName;
 import javax.xml.transform.Source;
@@ -23,14 +17,22 @@ import javax.xml.ws.handler.MessageContext;
 
 import org.apache.log4j.Logger;
 
+import br.com.planosaude.batch.util.FileUtils;
+
+/**
+ * Classe resposavel por monitorar os Requests e Responses e extrair o XML.
+ * 
+ * @author FernandoTAA
+ *
+ */
 public class SOAPMessageXMLHandler implements LogicalHandler<LogicalMessageContext> {
 
 	private final static Logger LOGGER = Logger.getLogger(SOAPMessageXMLHandler.class);
 
-	public Set<QName> getHeaders() {
-		return Collections.emptySet();
-	}
-
+	/**
+	 * @see LogicalHandler#handleMessage(MessageContext)
+	 */
+	@Override
 	public boolean handleMessage(LogicalMessageContext context) {
 		boolean direction = ((Boolean) context.get(LogicalMessageContext.MESSAGE_OUTBOUND_PROPERTY)).booleanValue();
 		String service = ((QName) context.get(LogicalMessageContext.WSDL_SERVICE)).getLocalPart();
@@ -39,8 +41,9 @@ public class SOAPMessageXMLHandler implements LogicalHandler<LogicalMessageConte
 			if (lm != null) {
 				LOGGER.info(String.format("SOAPMessage[Servico: %s; tipo: %s; xml: %s]", service,
 						direction ? "Response" : "Request", getSourceAsString((Source) lm.getPayload())));
-				salvarArquivo(String.format("C:/SoapXML/%s-%s[%s].xml", service, direction ? "Request" : "Response",
-						new SimpleDateFormat("yyyy-MM-dd'T'HH.mm.ss.SSS").format(new Date())),
+				FileUtils.salvarArquivo(
+						String.format("C:/SoapXML/%s-%s[%s].xml", service, direction ? "Request" : "Response",
+								new SimpleDateFormat("yyyy-MM-dd'T'HH.mm.ss.SSS").format(new Date())),
 						getSourceAsString((Source) lm.getPayload()));
 			}
 		} catch (Exception e) {
@@ -50,47 +53,40 @@ public class SOAPMessageXMLHandler implements LogicalHandler<LogicalMessageConte
 		return true;
 	}
 
-	private String getSourceAsString(Source s) throws Exception {
-
-		Transformer transformer = TransformerFactory.newInstance().newTransformer();
-
-		OutputStream out = new ByteArrayOutputStream();
-		StreamResult streamResult = new StreamResult();
-		streamResult.setOutputStream(out);
-		transformer.transform(s, streamResult);
-
-		return streamResult.getOutputStream().toString();
-	}
-
+	/**
+	 * @see SOAPMessageXMLHandler#handleFault(LogicalMessageContext)
+	 */
+	@Override
 	public boolean handleFault(LogicalMessageContext messageContext) {
 		return true;
 	}
 
+	/**
+	 * @see SOAPMessageXMLHandler#close(MessageContext)
+	 */
+	@Override
 	public void close(MessageContext messageContext) {
 	}
 
-	private void salvarArquivo(String fileName, String fileContent) {
-		BufferedWriter bw = null;
-		try {
+	/**
+	 * Metodo responsavel por extrair a {@link String} do XML do objeto
+	 * {@link Source}.
+	 * 
+	 * @param source
+	 *            - {@link Source} que representa o XML.
+	 * @return - {@link String} com a extração do XML
+	 * @throws Exception
+	 */
+	private String getSourceAsString(Source source) throws Exception {
 
-			// escreve no arquivo
-			FileWriter fw = new FileWriter(new File(fileName), true);
+		Transformer transformer = TransformerFactory.newInstance().newTransformer();
 
-			bw = new BufferedWriter(fw);
-			bw.write(fileContent);
-			bw.newLine();
+		OutputStream outputStream = new ByteArrayOutputStream();
+		StreamResult streamResult = new StreamResult();
+		streamResult.setOutputStream(outputStream);
+		transformer.transform(source, streamResult);
 
-		} catch (IOException e) {
-			LOGGER.error("ERRO ao salvar o arquivo.", e);
-		} finally {
-			if (bw != null) {
-				try {
-					bw.close();
-				} catch (IOException e) {
-					LOGGER.error("ERRO ao fechar o arquivo.", e);
-				}
-			}
-		}
+		return streamResult.getOutputStream().toString();
 	}
 
 }

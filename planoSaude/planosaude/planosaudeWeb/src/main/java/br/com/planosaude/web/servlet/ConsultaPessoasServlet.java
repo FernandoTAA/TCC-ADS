@@ -20,7 +20,7 @@ public class ConsultaPessoasServlet extends HttpServlet {
 	private IPessoaBusinessLocal pessoaBusiness;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("listPessoas", pessoaBusiness.buscarTodasPessoas());
+		request.setAttribute("listPessoas", pessoaBusiness.obterTodasPessoas());
 		request.getRequestDispatcher("pages/consultaPessoas.jsp").forward(request, response);  
 	}
 

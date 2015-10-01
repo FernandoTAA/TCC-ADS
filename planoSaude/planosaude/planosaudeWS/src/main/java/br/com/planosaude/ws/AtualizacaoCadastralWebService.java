@@ -21,7 +21,7 @@ public class AtualizacaoCadastralWebService {
 	public RetornoPessoas buscarTodasPessoas() {
 		RetornoPessoas retorno = new RetornoPessoas();
 		try {
-			retorno.setPessoas(pessoaBusiness.buscarTodasPessoas());
+			retorno.setPessoas(pessoaBusiness.obterTodasPessoas());
 			retorno.setCodigoStatus(StatusRetorno.SUCESSO.getCodigoStatus());
 			retorno.setStatus(StatusRetorno.SUCESSO.name());
 		} catch (Exception exception) {

@@ -14,8 +14,8 @@ public class PessoaBusiness extends GenericBusiness<Pessoa> implements IPessoaBu
 	@EJB
 	private IPessoaDAOLocal pessoaDAO;
 	
-	public List<Pessoa> buscarTodasPessoas() {
-		return pessoaDAO.buscarTodasPessoas();
+	public List<Pessoa> obterTodasPessoas() {
+		return pessoaDAO.obterTodasPessoas();
 	}
 
 	@Override

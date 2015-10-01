@@ -7,6 +7,7 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersInvalidException;
+import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
@@ -16,18 +17,37 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import br.com.planosaude.batch.util.SpringUtils;
 
-
+/**
+ * Classe que inicia o processamento de sincronismo da atualização cadastral das
+ * pessoas.
+ * 
+ * @author FernandoTAA
+ *
+ */
 public class AtualizacaoCadastralJobLauncher {
 
 	private static final Logger LOGGER = Logger.getLogger(AtualizacaoCadastralJobLauncher.class);
 
+	/**
+	 * Metodo que inicia o processamento iniciando com o escopo correto do
+	 * Spring e inicia o {@link Job}.
+	 * 
+	 * @param args
+	 */
 	public static void main(final String[] args) {
-		final ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext("classpath:/config/atualizacaoCadastralResources.xml");
+		final ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext(
+				"classpath:/config/atualizacaoCadastralResources.xml");
 		SpringUtils.setApplicationContext(appContext);
 		runJob(appContext);
 	}
 
-	public static void runJob(final ClassPathXmlApplicationContext appContext) {
+	/**
+	 * Metodo que recupra o {@link Job} do escopo do Spring e executa cada
+	 * {@link Step}.
+	 * 
+	 * @param appContext
+	 */
+	private static void runJob(final ClassPathXmlApplicationContext appContext) {
 		final Job appJob = (Job) appContext.getBean("atualizacaoCadastralJobLauncherJob");
 		final JobLauncher jobLauncher = (JobLauncher) appContext.getBean("jobLauncher");
 
@@ -36,7 +56,8 @@ public class AtualizacaoCadastralJobLauncher {
 			final long tempoExecucao = System.currentTimeMillis();
 			// Executa o Job, de forma sï¿½ncrona
 			final JobExecution result = jobLauncher.run(appJob, new JobParameters());
-			LOGGER.info("Tempo de execucao do batch: " + (System.currentTimeMillis() - tempoExecucao) / 1000 + " segundo(s)");
+			LOGGER.info("Tempo de execucao do batch: " + (System.currentTimeMillis() - tempoExecucao) / 1000
+					+ " segundo(s)");
 			// Lista os steps executados, e seus status de conclusï¿½o
 			final Collection<StepExecution> steps = result.getStepExecutions();
 			for (final StepExecution step : steps) {

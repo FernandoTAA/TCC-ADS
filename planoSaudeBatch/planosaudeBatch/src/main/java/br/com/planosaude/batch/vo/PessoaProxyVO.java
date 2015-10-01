@@ -7,8 +7,17 @@ import br.com.planosaude.batch.client.atualizacaocadastral.Pessoa;
 import br.com.planosaude.batch.client.atualizacaocadastral.Telefone;
 import br.com.planosaude.batch.util.DateUtils;
 
+/**
+ * Objeto Proxy da pessoa para melhor preenchimento do objeto.
+ * 
+ * @author FernandoTAA
+ *
+ */
 public class PessoaProxyVO extends Pessoa {
 
+	/**
+	 * @see Pessoa#getEndereco()
+	 */
 	@Override
 	public Endereco getEndereco() {
 		if (super.getEndereco() == null) {
@@ -17,6 +26,9 @@ public class PessoaProxyVO extends Pessoa {
 		return super.getEndereco();
 	}
 	
+	/**
+	 * @see Telefone#getTelefone()
+	 */
 	@Override
 	public Telefone getTelefone() {
 		if (super.getTelefone() == null) {

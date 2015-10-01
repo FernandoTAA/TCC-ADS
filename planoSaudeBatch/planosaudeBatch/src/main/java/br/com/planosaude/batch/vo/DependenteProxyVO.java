@@ -5,6 +5,12 @@ import java.util.Date;
 import br.com.planosaude.batch.client.atualizacaocadastral.Dependente;
 import br.com.planosaude.batch.util.DateUtils;
 
+/**
+ * Objeto Proxy da pessoa para melhor preenchimento do objeto.
+ * 
+ * @author FernandoTAA
+ *
+ */
 public class DependenteProxyVO extends Dependente {
 	
 	public void setDataNascimentoDate(Date dataNascimento) {

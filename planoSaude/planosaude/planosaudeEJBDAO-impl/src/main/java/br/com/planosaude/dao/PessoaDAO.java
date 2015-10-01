@@ -13,7 +13,7 @@ public class PessoaDAO extends GenericDAO<Pessoa> implements IPessoaDAOLocal {
 	@Override
 	@Transactional
 	@SuppressWarnings("unchecked")
-	public List<Pessoa> buscarTodasPessoas() {
+	public List<Pessoa> obterTodasPessoas() {
 		return getEntityManager().createQuery("SELECT pessoa FROM Pessoa pessoa").getResultList();
 	}
 

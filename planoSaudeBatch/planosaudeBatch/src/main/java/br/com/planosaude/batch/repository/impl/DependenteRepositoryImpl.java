@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.planosaude.batch.repository.DependenteRepository;
 import br.com.planosaude.batch.vo.DependenteProxyVO;
@@ -12,7 +11,6 @@ import br.com.planosaude.batch.vo.DependenteProxyVO;
 @Repository
 public class DependenteRepositoryImpl extends GenericRepositoryImpl implements DependenteRepository {
 
-	@Transactional
 	public List<DependenteProxyVO> obterDependentes(Long idPessoa) {
 		final StringBuffer sql = new StringBuffer();
 
