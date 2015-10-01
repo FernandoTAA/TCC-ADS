@@ -18,9 +18,14 @@ public class PessoaBusiness extends GenericBusiness<Pessoa> implements IPessoaBu
 		return pessoaDAO.buscarTodasPessoas();
 	}
 
+	@Override
 	public void savePessoa(Pessoa pessoa) {
-		pessoaDAO.savePessoa(pessoa);
-		
+		pessoaDAO.save(pessoa);
+	}
+
+	@Override
+	public void updatePessoa(Pessoa pessoa) {
+		pessoaDAO.update(pessoa);
 	}
 
 }

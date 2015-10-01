@@ -11,6 +11,4 @@ public interface IPessoaDAOLocal extends IGenericDAOLocal<Pessoa> {
 
 	public List<Pessoa> buscarTodasPessoas();
 
-	public void savePessoa(Pessoa pessoa);
-
 }

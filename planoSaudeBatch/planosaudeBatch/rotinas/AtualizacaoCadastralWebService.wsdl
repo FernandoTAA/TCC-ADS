@@ -1,0 +1,165 @@
+<?xml version="1.0" ?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.planosaude.com.br/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="AtualizacaoCadastralWebServiceService" targetNamespace="http://ws.planosaude.com.br/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.planosaude.com.br/" elementFormDefault="unqualified" targetNamespace="http://ws.planosaude.com.br/" version="1.0">
+
+  <xs:element name="buscarTodasPessoas" type="tns:buscarTodasPessoas"></xs:element>
+
+  <xs:element name="buscarTodasPessoasResponse" type="tns:buscarTodasPessoasResponse"></xs:element>
+
+  <xs:element name="savePessoa" type="tns:savePessoa"></xs:element>
+
+  <xs:element name="savePessoaResponse" type="tns:savePessoaResponse"></xs:element>
+
+  <xs:complexType name="buscarTodasPessoas">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="buscarTodasPessoasResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:retornoPessoas"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="retornoPessoas">
+    <xs:complexContent>
+      <xs:extension base="tns:retorno">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="pessoas" nillable="true" type="tns:pessoa"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="retorno">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigoStatus" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="status" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pessoa">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dataNascimento" type="tns:date"></xs:element>
+      <xs:element minOccurs="0" name="dataVencimentoPlano" type="tns:date"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="dependentes" nillable="true" type="tns:dependente"></xs:element>
+      <xs:element minOccurs="0" name="endereco" type="tns:endereco"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+      <xs:element minOccurs="0" name="nome" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="telefone" type="tns:telefone"></xs:element>
+      <xs:element minOccurs="0" name="tipoPlano" type="tns:tipoPlano"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="date">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="date" type="xs:dateTime"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="dependente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dataNascimento" type="tns:date"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+      <xs:element minOccurs="0" name="nome" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="endereco">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cep" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="cidade" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="complemento" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+      <xs:element minOccurs="0" name="logradouro" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="numero" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="uf" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="telefone">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="contato" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
+      <xs:element minOccurs="0" name="telefone" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="savePessoa">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="pessoa" type="tns:pessoa"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="savePessoaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:retorno"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="tipoPlano">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INDIVIDUAL"></xs:enumeration>
+      <xs:enumeration value="EMPRESA"></xs:enumeration>
+      <xs:enumeration value="FAMILIA"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="buscarTodasPessoasResponse">
+    <wsdl:part element="tns:buscarTodasPessoasResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="savePessoaResponse">
+    <wsdl:part element="tns:savePessoaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="savePessoa">
+    <wsdl:part element="tns:savePessoa" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="buscarTodasPessoas">
+    <wsdl:part element="tns:buscarTodasPessoas" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AtualizacaoCadastralWebService">
+    <wsdl:operation name="buscarTodasPessoas">
+      <wsdl:input message="tns:buscarTodasPessoas" name="buscarTodasPessoas">
+    </wsdl:input>
+      <wsdl:output message="tns:buscarTodasPessoasResponse" name="buscarTodasPessoasResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="savePessoa">
+      <wsdl:input message="tns:savePessoa" name="savePessoa">
+    </wsdl:input>
+      <wsdl:output message="tns:savePessoaResponse" name="savePessoaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AtualizacaoCadastralWebServiceServiceSoapBinding" type="tns:AtualizacaoCadastralWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="buscarTodasPessoas">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="buscarTodasPessoas">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="buscarTodasPessoasResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="savePessoa">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="savePessoa">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="savePessoaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AtualizacaoCadastralWebServiceService">
+    <wsdl:port binding="tns:AtualizacaoCadastralWebServiceServiceSoapBinding" name="AtualizacaoCadastralWebServicePort">
+      <soap:address location="http://localhost:8080/planosaudeWS/AtualizacaoCadastralWebService"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -28,7 +28,7 @@ public class PessoaVO {
 		
 		if (pessoa.getEndereco() != null) {
 			this.cidade = new SimpleStringProperty(pessoa.getEndereco().getCidade());
-			this.uf = new SimpleStringProperty(pessoa.getEndereco().getUF());
+			this.uf = new SimpleStringProperty(pessoa.getEndereco().getUf());
 		}
 		
 		if (pessoa.getDataVencimentoPlano() != null && pessoa.getDataVencimentoPlano().getDate() != null) {

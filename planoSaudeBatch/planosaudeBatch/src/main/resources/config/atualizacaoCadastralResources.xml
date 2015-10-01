@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:job="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+	<import resource="classpath:config/applicationResources.xml" />
+	
+	<bean id="atualizacaoCadastralReader" class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="sql" value="
+				SELECT p.id,
+					   p.nome,
+				       p.tipo_plano as tipoPlano,
+				       p.data_nascimento as dataNascimentoDate,
+				       p.data_vencimento_plano as dataVencimentoPlanoDate,
+				       e.id as enderecoId,
+				       e.logradouro,
+				       e.numero,
+				       e.complemento,
+				       e.cep,
+				       e.cidade,
+				       e.uf,
+				       t.id as telefoneId,
+				       t.telefone as telefoneString,
+				       t.contato
+				FROM pessoa p
+				  INNER JOIN endereco e ON (e.id = p.id_endereco)
+				  INNER JOIN telefone t ON (t.id = p.id_telefone)
+  			"/>
+		<property name="rowMapper">
+			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper">
+				<property name="mappedClass" value="br.com.planosaude.batch.vo.PessoaProxyVO" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="atualizacaoCadastralProcessor" class="br.com.planosaude.batch.steps.AtualizacaoCadastralProcessor" />
+	
+	<bean id="atualizacaoCadastralWriter" class="br.com.planosaude.batch.steps.AtualizacaoCadastralWriter" />
+
+	<!-- Configuracao dos jobs -->
+	<job:job id="atualizacaoCadastralJobLauncherJob" job-repository="jobRepository">
+		<job:step id="step1">
+			<job:tasklet transaction-manager="transactionManager">
+				<job:chunk reader="atualizacaoCadastralReader" processor="atualizacaoCadastralProcessor" writer="atualizacaoCadastralWriter" commit-interval="100" />
+			</job:tasklet>
+		</job:step>
+	</job:job>
+</beans>

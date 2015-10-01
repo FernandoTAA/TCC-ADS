@@ -13,4 +13,6 @@ public interface IPessoaBusinessLocal extends IGenericBusinessLocal<Pessoa> {
 
 	public void savePessoa(Pessoa pessoa);
 
+	public void updatePessoa(Pessoa pessoa);
+
 }

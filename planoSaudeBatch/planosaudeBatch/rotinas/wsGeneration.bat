@@ -1,0 +1,2 @@
+"%JAVA_HOME%\bin\wsimport" -verbose -p br.com.planosaude.batch.client.atualizacaocadastral -clientjar atualizacaoCadastralWebServiceClient.jar -d . AtualizacaoCadastralWebService.wsdl
+%M2_HOME%\bin\mvn install:install-file -Dfile=atualizacaoCadastralWebServiceClient.jar -DgroupId=br.com.planosaude -DartifactId=atualizacao-cadastral-wsclient -Dversion=1.0.0-SNAPSHOT -Dpackaging=jar

@@ -179,7 +179,7 @@ public class CadastroPessoaController {
 			pessoa.getEndereco().setComplemento(complemento.getText());
 			pessoa.getEndereco().setCep(cep.getText());
 			pessoa.getEndereco().setCidade(cidade.getText());
-			pessoa.getEndereco().setUF(uf.getValue());
+			pessoa.getEndereco().setUf(uf.getValue());
 			pessoa.getTelefone().setContato(contato.getText());
 			pessoa.getTelefone().setTelefone(telefone.getText());
 	
@@ -212,7 +212,7 @@ public class CadastroPessoaController {
 				complemento.setText(pessoa.getEndereco().getComplemento());
 				cep.setText(pessoa.getEndereco().getCep());
 				cidade.setText(pessoa.getEndereco().getCidade());
-				uf.setValue(pessoa.getEndereco().getUF());
+				uf.setValue(pessoa.getEndereco().getUf());
 				if (pessoa.getEndereco().getNumero() != null) {
 					numero.setText(String.valueOf(pessoa.getEndereco().getNumero()));
 				}

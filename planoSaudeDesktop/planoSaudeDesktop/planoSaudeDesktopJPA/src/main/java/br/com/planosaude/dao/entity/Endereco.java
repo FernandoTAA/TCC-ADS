@@ -37,7 +37,7 @@ public class Endereco implements Serializable {
 	private String cidade;
 
 	@Column(name = "UF", length = 2, nullable = false)
-	private String UF;
+	private String uf;
 
 	@OneToOne(mappedBy = "endereco")
 	private Pessoa pessoa;
@@ -66,8 +66,8 @@ public class Endereco implements Serializable {
 		return cidade;
 	}
 
-	public String getUF() {
-		return UF;
+	public String getUf() {
+		return uf;
 	}
 
 	public Pessoa getPessoa() {
@@ -98,8 +98,8 @@ public class Endereco implements Serializable {
 		this.cidade = cidade;
 	}
 
-	public void setUF(String uF) {
-		UF = uF;
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
 	public void setPessoa(Pessoa pessoa) {

@@ -35,7 +35,7 @@ public class AtualizacaoCadastralWebService {
 	public Retorno savePessoa(@WebParam(name="pessoa") Pessoa pessoa) {
 		Retorno retorno = new Retorno();
 		try {
-			pessoaBusiness.savePessoa(pessoa);
+			pessoaBusiness.updatePessoa(pessoa);
 			retorno.setCodigoStatus(StatusRetorno.SUCESSO.getCodigoStatus());
 			retorno.setStatus(StatusRetorno.SUCESSO.name());
 		} catch (Exception exception) {
