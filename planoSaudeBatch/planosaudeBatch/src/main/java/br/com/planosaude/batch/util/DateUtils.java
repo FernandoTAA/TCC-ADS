@@ -12,7 +12,7 @@ public class DateUtils {
 
 	private static final Logger LOGGER = Logger.getLogger(DateUtils.class);
 
-	public static XMLGregorianCalendar getXMLGregorianCalendar(final Date date) {
+	public static XMLGregorianCalendar parseXMLGregorianCalendar(final Date date) {
 		XMLGregorianCalendar xMLGregorianCalendar = null;
 		if (date != null) {
 			try {

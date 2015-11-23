@@ -41,14 +41,14 @@ public class PessoaProxyVO extends Pessoa {
 		if (super.getDataNascimento() == null) {
 			super.setDataNascimento(new br.com.planosaude.batch.client.atualizacaocadastral.Date());
 		}
-		super.getDataNascimento().setDate(DateUtils.getXMLGregorianCalendar(dataNascimento));
+		super.getDataNascimento().setDate(DateUtils.parseXMLGregorianCalendar(dataNascimento));
 	}
 
 	public void setDataVencimentoPlanoDate(Date dataVencimentoPlano) {
 		if (super.getDataVencimentoPlano() == null) {
 			super.setDataVencimentoPlano(new br.com.planosaude.batch.client.atualizacaocadastral.Date());
 		}
-		super.getDataVencimentoPlano().setDate(DateUtils.getXMLGregorianCalendar(dataVencimentoPlano));
+		super.getDataVencimentoPlano().setDate(DateUtils.parseXMLGregorianCalendar(dataVencimentoPlano));
 	}
 	
 	public void setEnderecoId(Long id) {

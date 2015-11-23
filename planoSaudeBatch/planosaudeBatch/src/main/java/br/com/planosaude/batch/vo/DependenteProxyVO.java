@@ -17,7 +17,7 @@ public class DependenteProxyVO extends Dependente {
 		if (super.getDataNascimento() == null) {
 			super.setDataNascimento(new br.com.planosaude.batch.client.atualizacaocadastral.Date());
 		}
-		super.getDataNascimento().setDate(DateUtils.getXMLGregorianCalendar(dataNascimento));
+		super.getDataNascimento().setDate(DateUtils.parseXMLGregorianCalendar(dataNascimento));
 	}
 
 }
